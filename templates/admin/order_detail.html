@@ -1,57 +1,81 @@
 {% extends "base.html" %}
-{% block title %}Order #{{ order.id }} | Admin{% endblock %}
+{% block title %}Order #{{ order.id }} Details{% endblock %}
+
 {% block content %}
-<div class="admin-layout d-flex">
-    <aside class="admin-sidebar me-3">
-        <div class="sidebar-inner">
-            <a href="{{ url_for('admin.admin_dashboard') }}" class="sidebar-link">
-                <i class="bi bi-speedometer2"></i> Dashboard
-            </a>
-            <a href="{{ url_for('admin.manage_products') }}" class="sidebar-link">
-                <i class="bi bi-box-seam"></i> Products
-            </a>
-            <a href="{{ url_for('admin.manage_orders') }}" class="sidebar-link active">
-                <i class="bi bi-receipt"></i> Orders
-            </a>
-        </div>
-    </aside>
+<div class="container py-4">
 
-    <section class="admin-content flex-grow-1">
-        <h2>Order #{{ order.id }}</h2>
-        <p>
-            <strong>User:</strong> {{ order.user.name }} ({{ order.user.email }})<br>
-            <strong>Status:</strong> {{ order.status }}<br>
-            <strong>Placed at:</strong> {{ order.created_at.strftime('%Y-%m-%d %H:%M') }}
-        </p>
+    <a class="btn btn-outline-secondary mb-3" href="{{ url_for('admin.manage_orders') }}">
+        <i class="bi bi-arrow-left"></i> Back
+    </a>
 
-        <div class="card shadow-sm">
-            <div class="card-body">
-                <h5 class="mb-3">Items</h5>
-                <table class="table table-sm align-middle">
-                    <thead>
-                    <tr>
-                        <th>Product</th>
-                        <th>Qty</th>
-                        <th>Price (₹)</th>
-                        <th>Subtotal (₹)</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for item in items %}
+    <h2 class="mb-3">Order Details</h2>
+
+    <div class="row g-4">
+
+        <!-- Order Summary -->
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0">Order #{{ order.id }}</h5>
+                </div>
+
+                <div class="card-body">
+                    <p><strong>User:</strong> {{ order.user.name }} ({{ order.user.email }})</p>
+                    <p><strong>Placed on:</strong> {{ order.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="badge bg-{% if order.order_status=='Pending' %}warning
+                                            {% elif order.order_status=='Shipped' %}info
+                                            {% elif order.order_status=='Cancelled' %}danger
+                                            {% else %}success{% endif %}">
+                            {{ order.order_status }}
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Items Table -->
+            <div class="card mt-3 shadow-sm border-0">
+                <div class="card-header">
+                    <h5 class="mb-0">Ordered Items</h5>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+                        <thead>
                         <tr>
-                            <td>{{ item.product.name }}</td>
-                            <td>{{ item.quantity }}</td>
-                            <td>{{ "%.2f"|format(item.price) }}</td>
-                            <td>{{ "%.2f"|format(item.price * item.quantity) }}</td>
+                            <th>Product</th>
+                            <th>Qty</th>
+                            <th>Unit Price (₹)</th>
+                            <th>Subtotal (₹)</th>
                         </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-                <div class="text-end">
-                    <h4>Total: ₹ {{ "%.2f"|format(order.total_amount) }}</h4>
+                        </thead>
+                        <tbody>
+                        {% for item in items %}
+                            <tr>
+                                <td>{{ item.product.name }}</td>
+                                <td>{{ item.quantity }}</td>
+                                <td>{{ "%.2f"|format(item.unit_price) }}</td>
+                                <td>{{ "%.2f"|format(item.subtotal) }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
                 </div>
             </div>
         </div>
-    </section>
+
+        <!-- Total Summary -->
+        <div class="col-lg-4">
+            <div class="card shadow-sm border-0">
+                <div class="card-body">
+                    <h4 class="fw-bold">Order Total</h4>
+                    <h3 class="text-success">₹ {{ "%.2f"|format(order.total_amount) }}</h3>
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
 {% endblock %}
