@@ -30,7 +30,7 @@ It features **role-based access control**, **shopping cart**, **order checkout**
 ---
 
 ## 🗂 Project Structure
-
+```bash
 ecommerce-flask/
 ├── app.py
 ├── config.py
@@ -61,7 +61,7 @@ ecommerce-flask/
 │ └── images/
 ├── requirements.txt
 └── README.md
-
+```
 
 ---
 
@@ -169,5 +169,6 @@ Password: admin123
 - Virtual Environment (venv)
 - Git & GitHub for version control
 - SQLite3 CLI for DB administration
+
 
 
