@@ -90,7 +90,13 @@ def checkout():
                 flash(f"Not enough stock for {ci.product.name}", "danger")
                 return redirect(url_for("cart.view_cart"))
 
-        order = Order(user_id=user_id, total_amount=total, status="Pending")
+        order = Order(
+            user_id=user_id,
+            total_amount=total,
+            order_status="Pending",    # ✔ correct
+            payment_method="COD",
+        )
+
         db.session.add(order)
         db.session.flush()  # assign order.id
 
@@ -99,8 +105,10 @@ def checkout():
                 order_id=order.id,
                 product_id=ci.product_id,
                 quantity=ci.quantity,
-                price=ci.product.price,
+                unit_price=ci.product.price,    # ✔ valid column
+                subtotal=ci.quantity * ci.product.price   # ✔ valid column
             )
+
             ci.product.stock -= ci.quantity
             db.session.add(order_item)
             db.session.delete(ci)
