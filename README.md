@@ -100,27 +100,39 @@ products ───< product_images
 ```bash
 git clone <repo-url>
 cd ecommerce-flask
-
-2️⃣ Create & Activate a Virtual Environment
+```
+### 2️⃣ Create & Activate a Virtual Environment
+```bash
 python3 -m venv venv
 source venv/bin/activate
+```
 
-3️⃣ Install dependencies
+### 3️⃣ Install dependencies
+```bash
 pip install -r requirements.txt
+```
 
-4️⃣ Run the application
+### 4️⃣ Run the application
+```bash
 python app.py
+```
 
-5️⃣ Access in browser
+### 5️⃣ Access in browser
+```bash
 http://127.0.0.1:5000/
+```
 
-🔐 Admin Account Setup
+###🔐 Admin Account Setup
+
 Option A — via SQLite
+```basg
 UPDATE users SET is_admin = 1 WHERE email = 'admin@gmail.com';
+```
 
 Option B — create from app
+```bash
 python seed_data.py
-
+```
 
 Admin login:
 
@@ -134,3 +146,4 @@ Backend	Python Flask
 Database	SQLite
 Libraries	SQLAlchemy ORM, Werkzeug Security
 UI Enhancements	Toasts, Flex Layout, Responsive Design
+
