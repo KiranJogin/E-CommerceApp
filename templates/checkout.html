@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}Checkout | E-Shop{% endblock %}
+{% block content %}
+<h2>Checkout</h2>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card shadow-sm mb-3">
+            <div class="card-body">
+                <h5 class="mb-3">Order summary</h5>
+                <table class="table table-sm align-middle">
+                    <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price (₹)</th>
+                        <th>Subtotal (₹)</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for item in cart_items %}
+                        <tr>
+                            <td>{{ item.product.name }}</td>
+                            <td>{{ item.quantity }}</td>
+                            <td>{{ "%.2f"|format(item.product.price) }}</td>
+                            <td>{{ "%.2f"|format(item.product.price * item.quantity) }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <div class="text-end">
+                    <h4>Total: ₹ {{ "%.2f"|format(total) }}</h4>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="mb-3">Payment (demo)</h5>
+                <p class="small text-muted">
+                    This is a demo project. Payment is simulated –
+                    click "Place order" to confirm.
+                </p>
+                <form method="POST">
+                    <button class="btn btn-accent w-100">
+                        <i class="bi bi-check2-circle"></i> Place order
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Admin Dashboard | E-Shop{% endblock %}
+{% block content %}
+<div class="admin-layout d-flex">
+    <aside class="admin-sidebar me-3">
+        <div class="sidebar-inner">
+            <a href="{{ url_for('admin.admin_dashboard') }}" class="sidebar-link active">
+                <i class="bi bi-speedometer2"></i> Dashboard
+            </a>
+            <a href="{{ url_for('admin.manage_products') }}" class="sidebar-link">
+                <i class="bi bi-box-seam"></i> Products
+            </a>
+            <a href="{{ url_for('admin.manage_orders') }}" class="sidebar-link">
+                <i class="bi bi-receipt"></i> Orders
+            </a>
+        </div>
+    </aside>
+
+    <section class="admin-content flex-grow-1">
+        <h2 class="mb-3">Admin Dashboard</h2>
+        <div class="row g-3">
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon bg-primary-subtle text-primary">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Products</div>
+                        <div class="stat-value">{{ total_products }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon bg-info-subtle text-info">
+                        <i class="bi bi-receipt"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Orders</div>
+                        <div class="stat-value">{{ total_orders }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon bg-warning-subtle text-warning">
+                        <i class="bi bi-hourglass-split"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Pending</div>
+                        <div class="stat-value">{{ pending_orders }}</div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="stat-card">
+                    <div class="stat-icon bg-success-subtle text-success">
+                        <i class="bi bi-check2-circle"></i>
+                    </div>
+                    <div>
+                        <div class="stat-label">Delivered</div>
+                        <div class="stat-value">{{ delivered_orders }}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+{% endblock %}
+    
