@@ -136,7 +136,7 @@ python seed_data.py
 
 Admin login:
 
-Email: admin@gmail.com
+Email: admin@example.com
 Password: admin123
 
 ## 🛠 Technologies Used
@@ -151,5 +151,6 @@ Password: admin123
 | **UI Enhancements** | Toast Notifications, Dark/Light Mode, Responsive Flexbox Layout, Bootstrap Icons, Sticky Navbar |
 | **Version Control** | Git & GitHub |
 | **Development Tools** | Virtual Environment (venv), SQLite3 CLI |
+
 
 
