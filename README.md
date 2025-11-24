@@ -141,34 +141,14 @@ Password: admin123
 
 ## 🛠 Technologies Used
 
-### **Frontend**
-- HTML5
-- CSS3
-- JavaScript (ES6)
-- Bootstrap 5
-- Jinja2 Template Engine
-
-### **Backend**
-- Python Flask Framework
-
-### **Database**
-- SQLite (Lightweight relational DB)
-- SQLAlchemy ORM for database abstraction
-
-### **Security**
-- Werkzeug Security (Password hashing & salting)
-
-### **UI Enhancements**
-- Toast Notifications
-- Dark / Light Theme Toggle
-- Responsive Flexbox Layout
-- Sticky Navbar & Smooth Interactions
-- Icons (Bootstrap Icons)
-
-### **Other Tools**
-- Virtual Environment (venv)
-- Git & GitHub for version control
-- SQLite3 CLI for DB administration
-
+Stack / Category	Technologies
+Frontend	HTML5, CSS3, JavaScript (ES6), Bootstrap 5, Jinja2 Templates
+Backend	Python Flask
+Database	SQLite
+ORM / DB Layer	SQLAlchemy ORM
+Security	Werkzeug Password Hashing
+UI Enhancements	Toasts, Dark/Light Mode, Responsive Design, Bootstrap Icons
+Version Control	Git & GitHub
+Development Tools	venv, SQLite3
 
 
